@@ -1,4 +1,5 @@
 package starter.model;
+import java.lang.*;
 
 public class TileSet {
 
@@ -43,5 +44,27 @@ public class TileSet {
 	
 	public NumberedTile[] getPieces() {return pieces;}
 	public EmptyTile getEmptyTile() {return space;}
+	
+	
+	public EmptyTile hasEmptyNeighbor(NumberedTile aTile) 
+	{
+		int col_diff = 0;
+		int row_diff = 0;
+		
+		
+			col_diff = Math.abs(aTile.getLocation().col - this.space.getLocation().col);
+			row_diff = Math.abs(aTile.getLocation().row - this.space.getLocation().row);
+			if((col_diff + row_diff) > 1)
+			{
+				//Empty Tile is not a neighbor
+			}
+			else 
+			{
+				//Empty Tile is a neighbor
+				return this.space;
+			}
+		
+		return null;
+	}
 	
 }
