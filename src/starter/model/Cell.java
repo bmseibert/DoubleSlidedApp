@@ -2,12 +2,25 @@ package starter.model;
 
 public class Cell {
 	
-	public int row;
-	public int col;
+	int row;
+	int col;
 
 	public Cell(int row, int col){
 		this.row = row;
 		this.col = col;
+	}
+	
+	public int getRow() {return row;}
+	public int getCol() {return col;}
+	
+	public void setRow(int newRow) 
+	{
+		row = newRow;
+	}
+	
+	public void setCol(int newCol) 
+	{
+		col = newCol;
 	}
 
 }

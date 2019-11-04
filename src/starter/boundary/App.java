@@ -11,6 +11,7 @@ import starter.controller.FlipController;
 import starter.model.EmptyTile;
 import starter.model.Model;
 import starter.model.NumberedTile;
+import starter.model.TileSet;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,14 +25,12 @@ public class App extends JFrame {
 
 	private JPanel contentPane;
 	PuzzlePanel panel;
-	NumberedTile[] pieces = new NumberedTile[8];
-	EmptyTile space;
-	Model model = new Model(pieces, space);
+	Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)));
 
 	/**
 	 * Create the frame.
 	 */
-	public App() {
+	public App(Model model) {
 		setTitle("Double Slided");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 727, 478);
@@ -49,7 +48,7 @@ public class App extends JFrame {
 		setContentPane(contentPane);
 		
 		panel = new PuzzlePanel(model);
-		// panel.addMouseListener(new FlipController(model, this));
+		panel.addMouseListener(new FlipController(model, this));
 		
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves:");
 		lblNumberOfMoves.setFont(new Font("Tahoma", Font.PLAIN, 18));

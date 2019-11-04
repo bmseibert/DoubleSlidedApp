@@ -27,8 +27,8 @@ public class PuzzlePanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		
-		NumberedTile[] pieces =  model.pieces;
-		EmptyTile space = model.space;
+		NumberedTile[] pieces =  model.puzzlePieces.getPieces();
+		EmptyTile space = model.puzzlePieces.getEmptyTile();
 		
 		Font numberFont = new Font("trebuchet", Font.BOLD, 24);
 		g.setFont(numberFont);
@@ -36,7 +36,7 @@ public class PuzzlePanel extends JPanel {
 		for (NumberedTile t : pieces)
 		{
 			// Draw Tiles
-			g.drawRect(t.getLocation().col * 110, t.getLocation().row * 110, 100, 100);
+			g.drawRect(t.getLocation().getCol() * 110, t.getLocation().getRow() * 110, 100, 100);
 			// Fill Tiles
 			if(t.getFlipStatus()) 
 			{
@@ -48,15 +48,15 @@ public class PuzzlePanel extends JPanel {
 				// Color cell grey
 				g.setColor(Color.gray);
 			}
-			g.fillRect(t.getLocation().col * 110, t.getLocation().row * 110, 100, 100);
+			g.fillRect(t.getLocation().getCol() * 110, t.getLocation().getRow() * 110, 100, 100);
 			// Draw Numbers on the Tiles
 			g.setColor(Color.white);
-			g.drawString("" + t.getVisibleNum(), (t.getLocation().col * 110) + 45, (t.getLocation().row * 110) + 60);
+			g.drawString("" + t.getVisibleNum(), (t.getLocation().getCol() * 110) + 45, (t.getLocation().getRow() * 110) + 60);
 		}
 		
-		g.drawRect(space.getLocation().col * 110, space.getLocation().row * 110, 100, 100);
+		g.drawRect(space.getLocation().getCol() * 110, space.getLocation().getRow() * 110, 100, 100);
 		g.setColor(Color.orange);
-		g.fillRect(space.getLocation().col * 110, space.getLocation().row * 110, 100, 100);
+		g.fillRect(space.getLocation().getCol() * 110, space.getLocation().getRow() * 110, 100, 100);
 		
 	}
 	

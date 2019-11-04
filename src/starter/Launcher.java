@@ -5,15 +5,14 @@ import starter.model.Cell;
 import starter.model.EmptyTile;
 import starter.model.Model;
 import starter.model.NumberedTile;
+import starter.model.TileSet;
 
 public class Launcher {
 
 	public static void main(String[] args) 
 	{
-		NumberedTile[] pieces = new NumberedTile[8];
-		EmptyTile space = new EmptyTile(new Cell(2,2));
-		Model m = new Model(pieces, space);
-		App dsa = new App();
+		Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)));
+		App dsa = new App(model);
 		
 		dsa.setVisible(true);
 	}

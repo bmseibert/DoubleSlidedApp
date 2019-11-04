@@ -17,7 +17,7 @@ public class FlipController extends MouseAdapter{
 	}
 	
 
-	public void mouseEvent(MouseEvent me) {
+	public void mousePressed(MouseEvent me) {
 		System.out.println(me.getPoint());
 	}
 	
