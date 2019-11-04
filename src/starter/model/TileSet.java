@@ -67,4 +67,12 @@ public class TileSet {
 		return null;
 	}
 	
+	public void switchTileAndSpace(NumberedTile aTile) 
+	{
+		Cell old_loc = aTile.getLocation();
+		aTile.setLocation(this.space.location);
+		this.space.setLocation(old_loc);
+		aTile.flipped = !(aTile.flipped); // change Flipped Status
+	}
+	
 }

@@ -11,7 +11,7 @@ public class Launcher {
 
 	public static void main(String[] args) 
 	{
-		Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)));
+		Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)), 0);
 		App dsa = new App(model);
 		
 		dsa.setVisible(true);

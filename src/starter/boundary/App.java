@@ -25,7 +25,7 @@ public class App extends JFrame {
 
 	private JPanel contentPane;
 	PuzzlePanel panel;
-	Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)));
+	Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)), 0);
 
 	/**
 	 * Create the frame.
