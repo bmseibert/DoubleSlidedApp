@@ -33,7 +33,7 @@ public class App extends JFrame {
 	public App(Model model) {
 		setTitle("Double Slided");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 727, 478);
+		setBounds(100, 100, 425, 478);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -50,22 +50,19 @@ public class App extends JFrame {
 		panel = new PuzzlePanel(model);
 		panel.addMouseListener(new FlipController(model, this));
 		
-		JLabel lblNumberOfMoves = new JLabel("Number of Moves:");
+		JLabel lblNumberOfMoves = new JLabel("Number of Moves: " + model.totalNumMoves);
 		lblNumberOfMoves.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JLabel numberMovesLabel = new JLabel("New label");
-		numberMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblNumberOfMoves)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(numberMovesLabel)))
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -75,8 +72,7 @@ public class App extends JFrame {
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 337, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNumberOfMoves)
-						.addComponent(numberMovesLabel))
+						.addComponent(lblNumberOfMoves))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);

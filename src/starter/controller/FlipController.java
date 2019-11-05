@@ -34,16 +34,18 @@ public class FlipController extends MouseAdapter{
 			{
 				System.out.println("Valid Flip!");
 //				//Switch the locations of the cells
-//				model.puzzlePieces.getTileFromCell(mouseLoc).setLocation(space.getLocation());
-//				System.out.println("new tile Loc:" + space.getLocation().getRow() + " , " + space.getLocation().getCol());
-//				model.puzzlePieces.getEmptyTile().setLocation(mouseTile.getLocation());
-//				System.out.println("new space Loc:" + model.puzzlePieces.getEmptyTile().getLocation().getRow() + " , " + model.puzzlePieces.getEmptyTile().getLocation().getCol());
-				System.out.println("old space Loc:" + model.puzzlePieces.getEmptyTile().getLocation().getRow() + " , " + model.puzzlePieces.getEmptyTile().getLocation().getCol());
 				model.puzzlePieces.switchTileAndSpace(mouseTile);
-				System.out.println("new space Loc:" + model.puzzlePieces.getEmptyTile().getLocation().getRow() + " , " + model.puzzlePieces.getEmptyTile().getLocation().getCol());
 				//UPDATES THE APP
-				dsa.repaint();
 				model.totalNumMoves++;
+				dsa.repaint();
+				if(loseCheck()) 
+				{
+					System.out.println("YOU LOSE :(");
+				}
+				if(winCheck()) 
+				{
+					System.out.println("YOU WIN :)");
+				}
 			}
 			
 		}
@@ -69,6 +71,79 @@ public class FlipController extends MouseAdapter{
 		if(mouseRow < 3) 
 		{
 			result.setRow(mouseRow);
+		}
+		
+		return result;
+	}
+	
+	public boolean loseCheck() 
+	{
+		int topnum = 0;
+		int oneCount = 0;
+		int twoCount = 0;
+		int threeCount = 0;
+		int fourCount = 0;
+		boolean result = false;
+		for(NumberedTile t : model.puzzlePieces.getPieces()) 
+		{
+			topnum = t.getVisibleNum();
+			if(topnum == 1) 
+			{
+				oneCount++;
+			}
+			else if(topnum == 2) 
+			{
+				twoCount++;
+			}
+			else if(topnum == 3) 
+			{
+				threeCount++;
+			}
+			else 
+			{
+				fourCount++;
+			}
+			
+		}
+		if(oneCount == 4 || twoCount == 4 || threeCount == 4 || fourCount == 4) 
+		{
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	public boolean winCheck() 
+	{
+		boolean result = false;
+		boolean numResult = false;
+		boolean colorResult = false;
+		EmptyTile space = model.puzzlePieces.getEmptyTile();
+		// Check that the space is in the center of the tiles
+		if(space.getLocation().getCol() == 1 && space.getLocation().getRow() == 1) 
+		{
+			int tile1num = model.puzzlePieces.getTileFromCell(new Cell(0,0)).getVisibleNum();
+			int tile2num = model.puzzlePieces.getTileFromCell(new Cell(0,1)).getVisibleNum();
+			int tile3num = model.puzzlePieces.getTileFromCell(new Cell(0,2)).getVisibleNum();
+			int tile4num = model.puzzlePieces.getTileFromCell(new Cell(1,0)).getVisibleNum();
+			int tile6num = model.puzzlePieces.getTileFromCell(new Cell(1,2)).getVisibleNum();
+			int tile7num = model.puzzlePieces.getTileFromCell(new Cell(2,0)).getVisibleNum();
+			int tile8num = model.puzzlePieces.getTileFromCell(new Cell(2,1)).getVisibleNum();
+			int tile9num = model.puzzlePieces.getTileFromCell(new Cell(2,2)).getVisibleNum();
+			numResult = (tile1num == 1 && tile2num == 2 && tile3num == 3 && tile4num == 4 && tile6num == 4
+					  && tile7num == 3 && tile8num == 2 && tile9num == 1);
+			
+			boolean tile1flipped = model.puzzlePieces.getTileFromCell(new Cell(0,0)).getFlipStatus();
+			boolean tile2flipped = model.puzzlePieces.getTileFromCell(new Cell(0,1)).getFlipStatus();
+			boolean tile3flipped = model.puzzlePieces.getTileFromCell(new Cell(0,2)).getFlipStatus();
+			boolean tile4flipped = model.puzzlePieces.getTileFromCell(new Cell(1,0)).getFlipStatus();
+			boolean tile6flipped = model.puzzlePieces.getTileFromCell(new Cell(1,2)).getFlipStatus();
+			boolean tile7flipped = model.puzzlePieces.getTileFromCell(new Cell(2,0)).getFlipStatus();
+			boolean tile8flipped = model.puzzlePieces.getTileFromCell(new Cell(2,1)).getFlipStatus();
+			boolean tile9flipped = model.puzzlePieces.getTileFromCell(new Cell(2,2)).getFlipStatus();
+			colorResult = (!tile1flipped && !tile2flipped && !tile3flipped && tile4flipped && 
+					       !tile6flipped && tile7flipped && tile8flipped && tile9flipped);
+			result = numResult && colorResult;
 		}
 		
 		return result;
