@@ -20,6 +20,8 @@ public class ResetController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent btnPressed) {
 		//System.out.println("Reset Button Pressed");
-		
+		Model resetModel = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)), 0);
+		model.puzzlePieces = resetModel.puzzlePieces;
+		dsa.repaint();
 	}
 }
