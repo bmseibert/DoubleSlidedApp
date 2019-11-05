@@ -39,4 +39,6 @@ public class NumberedTile extends Tile{
 	 * @return boolean flipped, the flipped attribute of the tile
 	 */
 	public boolean getFlipStatus() {return flipped;}
+	
+	public void setFlipStatus(boolean newStatus) {this.flipped = newStatus;}
 }
