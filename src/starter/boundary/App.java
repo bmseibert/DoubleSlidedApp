@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import starter.controller.FlipController;
+import starter.controller.ResetController;
 import starter.model.EmptyTile;
 import starter.model.Model;
 import starter.model.NumberedTile;
@@ -40,6 +41,7 @@ public class App extends JFrame {
 		
 		JButton btnReset = new JButton("Reset");
 		menuBar.add(btnReset);
+		btnReset.addActionListener(new ResetController(model, this));
 		
 		JButton btnQuit = new JButton("Quit");
 		menuBar.add(btnQuit);

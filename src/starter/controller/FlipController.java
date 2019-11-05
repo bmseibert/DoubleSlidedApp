@@ -21,7 +21,6 @@ public class FlipController extends MouseAdapter{
 	
 
 	public void mousePressed(MouseEvent me) {
-		System.out.println(me.getPoint());
 		// Get the mouse's cell location
 		Cell mouseLoc = mouseLocation(me);
 		
@@ -38,6 +37,7 @@ public class FlipController extends MouseAdapter{
 				//UPDATES THE APP
 				model.totalNumMoves++;
 				dsa.repaint();
+				
 				if(loseCheck()) 
 				{
 					System.out.println("YOU LOSE :(");
