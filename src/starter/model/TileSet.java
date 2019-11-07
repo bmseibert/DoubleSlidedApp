@@ -38,7 +38,6 @@ public class TileSet {
 				return t;
 			}
 		}
-		//TODO fix this later
 		return null;
 	}
 	
@@ -72,7 +71,7 @@ public class TileSet {
 		Cell old_loc = aTile.getLocation();
 		aTile.setLocation(this.space.location);
 		this.space.setLocation(old_loc);
-		aTile.flipped = !(aTile.flipped); // change Flipped Status
+		aTile.setFlipStatus(!(aTile.flipped)); // change Flipped Status
 	}
 	
 }

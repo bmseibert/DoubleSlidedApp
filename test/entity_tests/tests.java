@@ -28,5 +28,39 @@ public class tests {
 		assertEquals(tile1.getVisibleNum(), 1);
 		assertEquals(tile1.getFlipStatus(), false);
 	}
+	
+	@Test
+	public void hasEmptyNeighborTest()
+	{
+		TileSet pieces = new TileSet(new NumberedTile[8], new EmptyTile(null));
+		NumberedTile tile1 = pieces.getTileFromCell(new Cell(0,0)); //Tile away from the empty tile
+		NumberedTile tile6 = pieces.getTileFromCell(new Cell(1,2)); //Tile neighboring the empty tile
+		EmptyTile noNeighborTile = pieces.hasEmptyNeighbor(tile1);
+		EmptyTile neighborTile = pieces.hasEmptyNeighbor(tile6);
+		
+		//Checks that the function returns null when there is no neighboring empty tile
+		assertEquals(noNeighborTile, null);
+		//Checks that the function returns the correct empty cell when it is a neighbor of the tile entered in the function
+		assertEquals(neighborTile.getLocation().getCol(), pieces.getEmptyTile().getLocation().getCol());
+		assertEquals(neighborTile.getLocation().getRow(), pieces.getEmptyTile().getLocation().getRow());
+	}
+	
+	@Test 
+	public void flipTileTest()
+	{
+		TileSet pieces = new TileSet(new NumberedTile[8], new EmptyTile(null));
+		NumberedTile greyTileToFlip = pieces.getTileFromCell(new Cell(1,2));
+		NumberedTile blackTileToFlip = pieces.getTileFromCell(new Cell(2,1));
+		pieces.switchTileAndSpace(greyTileToFlip);
+		
+		// Check that the empty tile has changed locations with the selected numbered tile
+		assertEquals(pieces.getEmptyTile().getLocation().getCol(), 2);
+		assertEquals(pieces.getEmptyTile().getLocation().getRow(), 1);
+		
+		
+		
+		assertEquals(blackTileToFlip.getLocation().getCol(), 2);
+		assertEquals(blackTileToFlip.getLocation().getRow(), 2);
+	}
 
 }

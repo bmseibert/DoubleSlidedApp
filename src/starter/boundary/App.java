@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import starter.controller.FlipController;
+import starter.controller.QuitController;
 import starter.controller.ResetController;
 import starter.model.EmptyTile;
 import starter.model.Model;
@@ -45,6 +46,8 @@ public class App extends JFrame {
 		
 		JButton btnQuit = new JButton("Quit");
 		menuBar.add(btnQuit);
+		btnQuit.addActionListener(new QuitController(model, this));
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

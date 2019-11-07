@@ -4,6 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import starter.boundary.App;
+import starter.boundary.PopUp;
 import starter.model.Cell;
 import starter.model.EmptyTile;
 import starter.model.Model;
@@ -28,23 +29,27 @@ public class FlipController extends MouseAdapter{
 		{
 			//Location is valid
 			NumberedTile mouseTile = model.puzzlePieces.getTileFromCell(mouseLoc);
-			EmptyTile space = model.puzzlePieces.hasEmptyNeighbor(mouseTile);
-			if(space != null) // Checks if there is an empty tile neighboring the mouse tile
+			if(mouseTile != null) 
 			{
-				System.out.println("Valid Flip!");
-//				//Switch the locations of the cells
-				model.puzzlePieces.switchTileAndSpace(mouseTile);
-				//UPDATES THE APP
-				model.totalNumMoves++;
-				dsa.repaint();
-				
-				if(loseCheck()) 
+				EmptyTile space = model.puzzlePieces.hasEmptyNeighbor(mouseTile);
+				if(space != null) // Checks if there is an empty tile neighboring the mouse tile
 				{
-					System.out.println("YOU LOSE :(");
-				}
-				if(winCheck()) 
-				{
-					System.out.println("YOU WIN :)");
+					System.out.println("Valid Flip!");
+					//Switch the locations of the cells
+					model.puzzlePieces.switchTileAndSpace(mouseTile);
+					//UPDATES THE APP
+					model.totalNumMoves++;
+					dsa.repaint();
+					
+					if(loseCheck()) 
+					{
+						System.out.println("YOU LOSE :(");
+						PopUp.infoBox("You Lost! ", "Game Over", dsa);
+					}
+					if(winCheck()) 
+					{
+						System.out.println("YOU WIN :)");
+					}
 				}
 			}
 			
