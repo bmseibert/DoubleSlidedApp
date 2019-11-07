@@ -44,7 +44,7 @@ public class FlipController extends MouseAdapter{
 					if(loseCheck()) 
 					{
 						System.out.println("YOU LOSE :(");
-						PopUp.infoBox("You Lost! ", "Game Over", dsa);
+						PopUp.infoBox("You Lost! ", "Game Over", dsa, model);
 					}
 					if(winCheck()) 
 					{
