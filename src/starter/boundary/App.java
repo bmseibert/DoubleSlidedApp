@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import starter.controller.FlipController;
@@ -27,6 +28,9 @@ public class App extends JFrame {
 
 	private JPanel contentPane;
 	PuzzlePanel panel;
+	public JLabel lblNumberOfMoves = new JLabel();
+	public JButton btnReset = new JButton("Reset");
+	public JButton btnQuit = new JButton("Quit");
 	Model model = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)), 0);
 
 	/**
@@ -40,11 +44,9 @@ public class App extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JButton btnReset = new JButton("Reset");
 		menuBar.add(btnReset);
 		btnReset.addActionListener(new ResetController(model, this));
 		
-		JButton btnQuit = new JButton("Quit");
 		menuBar.add(btnQuit);
 		btnQuit.addActionListener(new QuitController(model, this));
 		
@@ -55,8 +57,8 @@ public class App extends JFrame {
 		panel = new PuzzlePanel(model);
 		panel.addMouseListener(new FlipController(model, this));
 		
-		JLabel lblNumberOfMoves = new JLabel("Number of Moves: " + model.totalNumMoves);
 		lblNumberOfMoves.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNumberOfMoves.setText("Number of Moves: " + model.getTotalNumMoves());
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

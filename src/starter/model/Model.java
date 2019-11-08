@@ -3,7 +3,7 @@ package starter.model;
 public class Model {
 
 	public TileSet puzzlePieces;
-	public int totalNumMoves;
+	int totalNumMoves;
 	
 	public Model(TileSet puzzlePieces, int totalNumMoves) 
 	{	
@@ -14,5 +14,6 @@ public class Model {
 	/** 
 	 * 
 	 */
-	
+	public int getTotalNumMoves() {return totalNumMoves;}
+	public void setTotalNumMoves(int newTotal) {this.totalNumMoves = newTotal;}
 }

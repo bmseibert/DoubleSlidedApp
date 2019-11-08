@@ -22,6 +22,8 @@ public class ResetController implements ActionListener{
 		//System.out.println("Reset Button Pressed");
 		Model resetModel = new Model(new TileSet(new NumberedTile[8], new EmptyTile(null)), 0);
 		model.puzzlePieces = resetModel.puzzlePieces;
+		model.setTotalNumMoves(0);
+		dsa.lblNumberOfMoves.setText("Number of Moves: " + model.getTotalNumMoves());
 		dsa.repaint();
 	}
 }

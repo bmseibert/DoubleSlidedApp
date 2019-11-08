@@ -1,5 +1,6 @@
 package starter.controller;
 
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,6 +25,7 @@ public class FlipController extends MouseAdapter{
 	public void mousePressed(MouseEvent me) {
 		// Get the mouse's cell location
 		Cell mouseLoc = mouseLocation(me);
+		System.out.println(me.getPoint());
 		
 		if(mouseLoc.getCol() > -1 && mouseLoc.getRow() > -1) 
 		{
@@ -38,17 +40,22 @@ public class FlipController extends MouseAdapter{
 					//Switch the locations of the cells
 					model.puzzlePieces.switchTileAndSpace(mouseTile);
 					//UPDATES THE APP
-					model.totalNumMoves++;
+					int moves = model.getTotalNumMoves();
+					model.setTotalNumMoves((moves + 1));
+					dsa.lblNumberOfMoves.setText("Number of Moves: " + model.getTotalNumMoves());
 					dsa.repaint();
 					
 					if(loseCheck()) 
 					{
 						System.out.println("YOU LOSE :(");
 						PopUp.infoBox("You Lost! ", "Game Over", dsa, model);
+						model.setTotalNumMoves(0);
 					}
 					if(winCheck()) 
 					{
 						System.out.println("YOU WIN :)");
+						PopUp.infoBox("You Won! ", "Game Won", dsa, model);
+						model.setTotalNumMoves(0);
 					}
 				}
 			}
